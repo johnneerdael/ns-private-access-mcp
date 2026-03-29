@@ -61,6 +61,10 @@ The MCP server provides **84 specialized tools** across 10 categories:
 - ✅ Generates compliance score and remediation plan
 - ✅ Creates detailed findings report with priorities
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/johnneerdael-netskope-mcp).
+
 ## Quick Start
 
 1. **Environment Setup**
