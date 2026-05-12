@@ -6,7 +6,7 @@
 
 services:
   netskope-mcp:
-    image: ghcr.io/johnneerdael/ns-private-access-mcp:${TAG:-latest}
+    image: ghcr.io/johnneerdael/privateaccess-mcp:${TAG:-latest}
     pull_policy: always
     container_name: netskope-mcp
     restart: unless-stopped
