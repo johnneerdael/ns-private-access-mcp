@@ -1,0 +1,17 @@
+services:
+  netskope-mcp:
+    build: .
+    image: ghcr.io/johnneerdael/ns-private-access-mcp:latest
+    container_name: netskope-mcp
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      PORT: 3000
+      HOST: 0.0.0.0
+      # Optional fallback credentials if you want to run single-tenant
+      # without requiring clients to send headers. Leave unset for
+      # per-request auth (recommended for shared hosting).
+      # NETSKOPE_BASE_URL: https://your-tenant.goskope.com
+      # NETSKOPE_API_TOKEN: your-token
+      # CORS_ORIGIN: https://claude.ai,https://chat.openai.com

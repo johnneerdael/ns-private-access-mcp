@@ -1,11 +1,15 @@
 import dotenv from 'dotenv';
 import { z } from "zod";
+import { getRequestContext } from '../utils/request-context.js';
 
 dotenv.config();
 
+// baseUrl and apiToken are optional at boot so the server can run in HTTP
+// mode where credentials arrive per request (via headers → AsyncLocalStorage).
+// They are still required at request time — see ApiClient.request.
 export const configSchema = z.object({
-  baseUrl: z.string().url(),
-  apiToken: z.string().min(1),
+  baseUrl: z.union([z.string().url(), z.literal('')]).default(''),
+  apiToken: z.string().default(''),
   timeout: z.number().positive().default(30000),
   retryAttempts: z.number().nonnegative().default(3),
   retryDelay: z.number().nonnegative().default(1000),
@@ -73,12 +77,27 @@ export class ApiClient {
       }
     }
 
-    const url = new URL(path, this.config.baseUrl);
-    const headers = new Headers(options.headers);
-    const apiToken = process.env.NETSKOPE_API_TOKEN || process.env.NETSKOPE_API_KEY;
-    if (!apiToken) {
-      throw new Error('Netskope API token not found in environment variables.');
+    // Resolve credentials in priority order: per-request context (HTTP mode)
+    // → in-memory config (stdio mode) → environment fallback.
+    const ctx = getRequestContext();
+    const baseUrl =
+      ctx?.baseUrl || this.config.baseUrl || process.env.NETSKOPE_BASE_URL;
+    const apiToken =
+      ctx?.apiToken ||
+      process.env.NETSKOPE_API_TOKEN ||
+      process.env.NETSKOPE_API_KEY;
+    if (!baseUrl) {
+      throw new Error(
+        'Netskope tenant base URL not provided. Set NETSKOPE_BASE_URL or pass X-Netskope-Tenant header.'
+      );
     }
+    if (!apiToken) {
+      throw new Error(
+        'Netskope API token not provided. Set NETSKOPE_API_TOKEN or pass Authorization: Bearer <token>.'
+      );
+    }
+    const url = new URL(path, baseUrl);
+    const headers = new Headers(options.headers);
     headers.set('Authorization', `Bearer ${apiToken}`);
     headers.set('Content-Type', 'application/json');
 

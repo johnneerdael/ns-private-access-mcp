@@ -1,5 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import type { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import { NetskopeClient } from './mcp.js';
 import { z } from 'zod';
 import { publisherCommands } from './commands/publishers/index.js';
@@ -141,7 +141,11 @@ export class NetskopeServer {
     });
   }
 
-  async start(transport: StdioServerTransport): Promise<void> {
+  async start(transport: Transport): Promise<void> {
+    await this.server.connect(transport);
+  }
+
+  async connect(transport: Transport): Promise<void> {
     await this.server.connect(transport);
   }
 

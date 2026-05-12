@@ -4,12 +4,15 @@
   "description": "MCP server for Netskope's Zero Trust Network Access Platform management through LLM's",
   "type": "module",
   "bin": {
-    "netskope-mcp": "dist/cli.js"
+    "netskope-mcp": "dist/cli.js",
+    "netskope-mcp-http": "dist/cli-http.js"
   },
   "scripts": {
     "build": "tsc",
     "start": "node --env-file .env dist/cli.js",
+    "start:http": "node --env-file .env dist/cli-http.js",
     "dev": "tsc -w & node --env-file .env --watch dist/cli.js",
+    "dev:http": "tsc -w & node --env-file .env --watch dist/cli-http.js",
     "test": "vitest",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"
@@ -41,12 +44,15 @@
   "license": "ISC",
   "dependencies": {
     "@modelcontextprotocol/sdk": "latest",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
+    "express": "^4.21.2",
     "rimraf": "^6.0.1",
-    "zod": "latest",
-    "dotenv": "latest"
+    "zod": "latest"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
     "@types/node": "latest",
     "node": "^22.0.0",
     "typescript": "latest",

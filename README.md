@@ -129,6 +129,60 @@ npm install
 npm run build
 ```
 
+## Remote / Hosted Mode (Streamable HTTP)
+
+In addition to the stdio entry (`netskope-mcp`), the server ships a streamable-HTTP
+entry (`netskope-mcp-http`) that can be hosted on the public internet and shared
+across clients. Credentials are accepted **per request** via headers so a single
+deployment can serve many Netskope tenants.
+
+### Run locally
+```bash
+npm run build
+PORT=3000 node dist/cli-http.js
+# → Netskope MCP HTTP server listening on http://0.0.0.0:3000/mcp
+```
+
+### Run with Docker
+```bash
+docker compose up --build
+# or
+docker build -t netskope-mcp .
+docker run --rm -p 3000:3000 netskope-mcp
+```
+
+### Required headers on every request
+| Header | Value |
+|--------|-------|
+| `X-Netskope-Tenant` | `https://<tenant>.goskope.com` (scheme optional — added if missing) |
+| `Authorization` | `Bearer <netskope-api-token>` |
+| `Accept` | `application/json, text/event-stream` |
+
+`Mcp-Session-Id` is set by the server on the initialize response and must be
+echoed by the client on subsequent requests.
+
+### Client config example
+```json
+{
+  "mcpServers": {
+    "netskope": {
+      "url": "https://mcp.example.com/mcp",
+      "headers": {
+        "X-Netskope-Tenant": "https://your-tenant.goskope.com",
+        "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"
+      }
+    }
+  }
+}
+```
+
+If `NETSKOPE_BASE_URL` and `NETSKOPE_API_TOKEN` are set in the container, they
+act as a fallback when a client omits the headers — useful for single-tenant
+deployments. Leave them unset for multi-tenant hosting.
+
+Set `CORS_ORIGIN` (comma-separated) to restrict browser-based clients;
+defaults to `*`.
+
 ## Architecture Highlights
 
 ### Tool Composition
