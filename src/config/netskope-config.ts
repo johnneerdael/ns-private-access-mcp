@@ -116,11 +116,32 @@ export class ApiClient {
 
 
       if (!response.ok) {
+        // Log non-2xx upstream responses with status + a short body excerpt so
+        // we can tell auth issues from real backend errors.
+        let bodyExcerpt = '';
+        try {
+          const text = await response.clone().text();
+          bodyExcerpt = text.slice(0, 200);
+        } catch {
+          // ignore — best-effort
+        }
+        console.error(
+          JSON.stringify({
+            ts: new Date().toISOString(),
+            msg: 'upstream-error',
+            url: url.toString(),
+            method: options.method ?? 'GET',
+            status: response.status,
+            statusText: response.statusText,
+            body: bodyExcerpt,
+            durMs: Math.round(Date.now() - startTime),
+          })
+        );
         throw new Error(`API request failed: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json() as T;
-      
+
       if (options.method === 'GET') {
         if (this.cache.size >= this.config.cacheSize) {
           const oldestKey = [...this.cache.entries()]
@@ -129,9 +150,31 @@ export class ApiClient {
         }
         this.cache.set(cacheKey, {data, timestamp: Date.now()});
       }
-      
+
       return data;
     } catch (error) {
+      // Network-layer failures (DNS, ECONNREFUSED, TLS, AbortError) reach
+      // here as TypeError('fetch failed') with a .cause. Surface both so
+      // container logs explain "fetch failed" without re-running.
+      const err = error as Error & { cause?: unknown };
+      const cause = err.cause as
+        | { code?: string; errno?: string; message?: string; hostname?: string }
+        | undefined;
+      console.error(
+        JSON.stringify({
+          ts: new Date().toISOString(),
+          msg: 'upstream-fetch-failed',
+          url: url.toString(),
+          method: options.method ?? 'GET',
+          error: err.message,
+          causeCode: cause?.code ?? null,
+          causeErrno: cause?.errno ?? null,
+          causeHostname: cause?.hostname ?? null,
+          causeMessage: cause?.message ?? null,
+          aborted: controller.signal.aborted || null,
+          durMs: Math.round(Date.now() - startTime),
+        })
+      );
       throw error;
     } finally {
       clearTimeout(timeoutId);

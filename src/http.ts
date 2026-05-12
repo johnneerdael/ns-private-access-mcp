@@ -51,11 +51,28 @@ function unauthorized(res: Response, id: unknown = null) {
   });
 }
 
+function logLine(fields: Record<string, unknown>) {
+  // Single-line JSON so it plays nicely with `docker logs`, journald,
+  // and any log shipper that wants to parse it. Stderr keeps it out of
+  // any stdio JSON-RPC stream.
+  console.error(JSON.stringify({ ts: new Date().toISOString(), ...fields }));
+}
+
+function tenantHost(value?: string): string | undefined {
+  if (!value) return undefined;
+  try {
+    return new URL(value).host;
+  } catch {
+    return value;
+  }
+}
+
 export async function startHttpServer(
   port = Number(process.env.PORT ?? 3000),
   host = process.env.HOST ?? '0.0.0.0'
 ) {
   const app = express();
+  app.disable('x-powered-by');
   app.use(express.json({ limit: '4mb' }));
   app.use(
     cors({
@@ -75,6 +92,31 @@ export async function startHttpServer(
       ],
     })
   );
+
+  // Per-request access log — never includes the token or full headers.
+  app.use((req, res, next) => {
+    const start = process.hrtime.bigint();
+    const rpcMethod =
+      req.method === 'POST' && (req.body as { method?: string })?.method;
+    const rpcId =
+      req.method === 'POST' && (req.body as { id?: unknown })?.id;
+    res.on('finish', () => {
+      const durMs = Number(process.hrtime.bigint() - start) / 1_000_000;
+      logLine({
+        msg: 'http',
+        method: req.method,
+        path: req.path,
+        status: res.statusCode,
+        durMs: Math.round(durMs),
+        sessionId: req.header('mcp-session-id') ?? null,
+        tenant: tenantHost(req.header('x-netskope-tenant')) ?? null,
+        rpcMethod: rpcMethod || null,
+        rpcId: rpcId ?? null,
+        ua: req.header('user-agent') ?? null,
+      });
+    });
+    next();
+  });
 
   const publicUrl = process.env.PUBLIC_URL?.replace(/\/+$/, '');
 
