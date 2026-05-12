@@ -1,7 +1,10 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json* tsconfig.json ./
-RUN npm install --no-audit --no-fund
+# --ignore-scripts skips postinstall steps that ship native binaries
+# (e.g. esbuild via vitest), which fail under QEMU on cross-arch builds.
+# We only need typescript to run `tsc` — no native helpers required.
+RUN npm install --ignore-scripts --no-audit --no-fund
 COPY src ./src
 RUN npm run build
 
@@ -11,7 +14,8 @@ ENV NODE_ENV=production \
     PORT=3000 \
     HOST=0.0.0.0
 COPY package.json package-lock.json* ./
-RUN npm install --omit=dev --no-audit --no-fund && npm cache clean --force
+RUN npm install --omit=dev --ignore-scripts --no-audit --no-fund \
+    && npm cache clean --force
 COPY --from=build /app/dist ./dist
 EXPOSE 3000
 USER node

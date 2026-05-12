@@ -131,44 +131,94 @@ npm run build
 
 ## Remote / Hosted Mode (Streamable HTTP)
 
-In addition to the stdio entry (`netskope-mcp`), the server ships a streamable-HTTP
-entry (`netskope-mcp-http`) that can be hosted on the public internet and shared
-across clients. Credentials are accepted **per request** via headers so a single
-deployment can serve many Netskope tenants.
+A public instance of this server is hosted at:
 
-### Run locally
-```bash
-npm run build
-PORT=3000 node dist/cli-http.js
-# → Netskope MCP HTTP server listening on http://0.0.0.0:3000/mcp
-```
+> **`https://privateaccess.ntsk.app/mcp`**
 
-### Run with Docker
-```bash
-docker compose up --build
-# or
-docker build -t netskope-mcp .
-docker run --rm -p 3000:3000 netskope-mcp
-```
+Credentials are accepted **per request** via HTTP headers, so the same
+deployment can serve many Netskope tenants. You bring your own
+`NETSKOPE_BASE_URL` (tenant) and `NETSKOPE_API_TOKEN` — they never leave your
+client config and are never stored server-side.
 
-### Required headers on every request
+### Required headers
+
 | Header | Value |
 |--------|-------|
-| `X-Netskope-Tenant` | `https://<tenant>.goskope.com` (scheme optional — added if missing) |
+| `X-Netskope-Tenant` | `https://<tenant>.goskope.com` (scheme is added if you omit it) |
 | `Authorization` | `Bearer <netskope-api-token>` |
-| `Accept` | `application/json, text/event-stream` |
+| `Accept` | `application/json, text/event-stream` (sent automatically by MCP clients) |
 
-`Mcp-Session-Id` is set by the server on the initialize response and must be
-echoed by the client on subsequent requests.
+`Mcp-Session-Id` is set by the server on the initialize response and is echoed
+by the client on subsequent requests — your MCP client handles this for you.
 
-### Client config example
+### Install in Claude Code
+
+Claude Code speaks streamable HTTP natively. Add the server with one command:
+
+```bash
+claude mcp add --transport http netskope https://privateaccess.ntsk.app/mcp \
+  --header "X-Netskope-Tenant: https://YOUR-TENANT.goskope.com" \
+  --header "Authorization: Bearer YOUR_NETSKOPE_API_TOKEN"
+```
+
+Or, equivalently, add it to `~/.claude.json` (user scope) or `.mcp.json`
+(project scope):
+
 ```json
 {
   "mcpServers": {
     "netskope": {
-      "url": "https://mcp.example.com/mcp",
+      "type": "http",
+      "url": "https://privateaccess.ntsk.app/mcp",
       "headers": {
-        "X-Netskope-Tenant": "https://your-tenant.goskope.com",
+        "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
+        "Authorization": "Bearer ${NETSKOPE_API_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+Verify with `claude mcp list` — the server should show up and report
+its tool count.
+
+### Install in OpenAI Codex CLI
+
+Codex's `mcp_servers` config currently expects a stdio command, so we use the
+[`mcp-remote`](https://www.npmjs.com/package/mcp-remote) bridge (shipped via
+`npx`) to translate stdio ↔ streamable HTTP. Add to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.netskope]
+command = "npx"
+args = [
+  "-y", "mcp-remote",
+  "https://privateaccess.ntsk.app/mcp",
+  "--header", "X-Netskope-Tenant: https://YOUR-TENANT.goskope.com",
+  "--header", "Authorization: Bearer ${NETSKOPE_API_TOKEN}",
+]
+
+[mcp_servers.netskope.env]
+NETSKOPE_API_TOKEN = "your-netskope-api-token"
+```
+
+Then `codex mcp list` to confirm Codex sees the server, and Codex will surface
+the Netskope tools on its next turn.
+
+> The same `mcp-remote` recipe works for any client that only supports stdio
+> MCP servers (older Cursor, Continue, etc.).
+
+### Generic JSON client config
+
+For clients that take a JSON map (Cursor, Windsurf, custom hosts):
+
+```json
+{
+  "mcpServers": {
+    "netskope": {
+      "url": "https://privateaccess.ntsk.app/mcp",
+      "headers": {
+        "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"
       }
     }
@@ -176,12 +226,30 @@ echoed by the client on subsequent requests.
 }
 ```
 
-If `NETSKOPE_BASE_URL` and `NETSKOPE_API_TOKEN` are set in the container, they
-act as a fallback when a client omits the headers — useful for single-tenant
-deployments. Leave them unset for multi-tenant hosting.
+### Self-hosting
 
-Set `CORS_ORIGIN` (comma-separated) to restrict browser-based clients;
-defaults to `*`.
+Prefer to run your own instance? Pull the multi-arch image from GHCR or build
+locally:
+
+```bash
+# Hosted image
+docker run --rm -p 3000:3000 ghcr.io/johnneerdael/ns-private-access-mcp:latest
+
+# Or build from source
+docker compose up --build
+# or
+npm run build
+PORT=3000 node dist/cli-http.js
+```
+
+The container exposes `/mcp` (streamable HTTP) and `/healthz` (liveness).
+Useful env vars:
+
+| Var | Purpose |
+|-----|---------|
+| `PORT` / `HOST` | Bind address (default `0.0.0.0:3000`). |
+| `CORS_ORIGIN` | Comma-separated allowlist for browser-based clients. Defaults to `*`. |
+| `NETSKOPE_BASE_URL` / `NETSKOPE_API_TOKEN` | Optional **fallback** credentials. Use only for single-tenant deployments; leave unset for multi-tenant hosting. |
 
 ## Architecture Highlights
 
