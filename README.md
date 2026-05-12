@@ -228,18 +228,25 @@ For clients that take a JSON map (Cursor, Windsurf, custom hosts):
 
 ### Self-hosting
 
-Prefer to run your own instance? Pull the multi-arch image from GHCR or build
-locally:
+Prefer to run your own instance? Two compose files are shipped:
+
+| File | Purpose | Command |
+|------|---------|---------|
+| `docker-compose.yml` | Run the prebuilt multi-arch image from GHCR. | `docker compose up -d` |
+| `docker-compose.build.yml` | Build from local sources (for development). | `docker compose -f docker-compose.build.yml up --build` |
+
+One-liners without compose:
 
 ```bash
-# Hosted image
+# Prebuilt image from GHCR
 docker run --rm -p 3000:3000 ghcr.io/johnneerdael/ns-private-access-mcp:latest
 
-# Or build from source
-docker compose up --build
-# or
-npm run build
-PORT=3000 node dist/cli-http.js
+# Build and run from a local checkout
+docker build -t netskope-mcp:local .
+docker run --rm -p 3000:3000 netskope-mcp:local
+
+# Or just run the Node entry directly
+npm run build && PORT=3000 node dist/cli-http.js
 ```
 
 The container exposes `/mcp` (streamable HTTP) and `/healthz` (liveness).

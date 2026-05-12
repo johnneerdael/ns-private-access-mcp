@@ -1,13 +1,16 @@
-# Run the prebuilt image published from GitHub Container Registry.
-# Use docker-compose.build.yml if you want to build from local sources.
+# Build the image from local sources. Use this when you're developing
+# against this repo. For just running a published release, see
+# docker-compose.yml (pulls from ghcr.io).
 #
-#   docker compose up -d
-#   docker compose pull   # grab the latest published image
+#   docker compose -f docker-compose.build.yml up --build
+#   docker compose -f docker-compose.build.yml up -d   # detached, reuse last build
 
 services:
   netskope-mcp:
-    image: ghcr.io/johnneerdael/ns-private-access-mcp:${TAG:-latest}
-    pull_policy: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: netskope-mcp:local
     container_name: netskope-mcp
     restart: unless-stopped
     ports:
