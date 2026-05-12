@@ -135,21 +135,20 @@ A public instance of this server is hosted at:
 
 > **`https://privateaccess.ntsk.app/mcp`**
 
-Credentials are accepted **per request** via HTTP headers, so the same
-deployment can serve many Netskope tenants. You bring your own
-`NETSKOPE_BASE_URL` (tenant) and `NETSKOPE_API_TOKEN` — they never leave your
-client config and are never stored server-side.
-
-### Required headers
+The hosted instance is **multi-tenant and stateless** — it stores no
+credentials. Every request must carry **both**:
 
 | Header | Value |
 |--------|-------|
 | `X-Netskope-Tenant` | `https://<tenant>.goskope.com` (scheme is added if you omit it) |
 | `Authorization` | `Bearer <netskope-api-token>` |
-| `Accept` | `application/json, text/event-stream` (sent automatically by MCP clients) |
 
-`Mcp-Session-Id` is set by the server on the initialize response and is echoed
-by the client on subsequent requests — your MCP client handles this for you.
+`Accept: application/json, text/event-stream` and `Mcp-Session-Id` are
+handled by your MCP client automatically — you don't need to set them by hand.
+
+You bring your own tenant URL and API token; they live only in your client
+config and travel with each request. Requests missing either header receive
+`401 Unauthorized` with a JSON-RPC error pointing at the missing field.
 
 ### Install in Claude Code
 
@@ -255,8 +254,8 @@ Useful env vars:
 | Var | Purpose |
 |-----|---------|
 | `PORT` / `HOST` | Bind address (default `0.0.0.0:3000`). |
-| `CORS_ORIGIN` | Comma-separated allowlist for browser-based clients. Defaults to `*`. |
-| `NETSKOPE_BASE_URL` / `NETSKOPE_API_TOKEN` | Optional **fallback** credentials. Use only for single-tenant deployments; leave unset for multi-tenant hosting. |
+| `CORS_ORIGIN` | Comma-separated allowlist for *browser*-based MCP clients (e.g. `https://claude.ai`). Defaults to `*`. Not relevant for CLI clients (Claude Code, Codex, Cursor) or when running behind a reverse proxy that doesn't itself need CORS. |
+| `NETSKOPE_BASE_URL` / `NETSKOPE_API_TOKEN` | Optional **fallback** credentials, used only when a client omits the headers. Set both for single-tenant deployments; leave both unset for multi-tenant hosting (the model used by `privateaccess.ntsk.app`). |
 
 ## Architecture Highlights
 
