@@ -18,6 +18,10 @@ services:
     environment:
       PORT: 3000
       HOST: 0.0.0.0
+      # Canonical public origin (no trailing slash). Surfaced in /healthz
+      # and the boot log; reserved for future OAuth metadata endpoints.
+      # Override with: PUBLIC_URL=https://mcp.example.com docker compose ...
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:3000}
       # Optional fallback credentials if you want to run single-tenant
       # without requiring clients to send headers. Leave unset for
       # per-request auth (recommended for shared hosting).

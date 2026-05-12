@@ -254,6 +254,7 @@ Useful env vars:
 | Var | Purpose |
 |-----|---------|
 | `PORT` / `HOST` | Bind address (default `0.0.0.0:3000`). |
+| `PUBLIC_URL` | Canonical public origin (e.g. `https://privateaccess.ntsk.app`). Surfaced in `/healthz` and the startup log; reserved for future OAuth/well-known metadata. Safe to omit. |
 | `CORS_ORIGIN` | Comma-separated allowlist for *browser*-based MCP clients (e.g. `https://claude.ai`). Defaults to `*`. Not relevant for CLI clients (Claude Code, Codex, Cursor) or when running behind a reverse proxy that doesn't itself need CORS. |
 | `NETSKOPE_BASE_URL` / `NETSKOPE_API_TOKEN` | Optional **fallback** credentials, used only when a client omits the headers. Set both for single-tenant deployments; leave both unset for multi-tenant hosting (the model used by `privateaccess.ntsk.app`). |
 

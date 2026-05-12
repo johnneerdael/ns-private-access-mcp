@@ -76,8 +76,14 @@ export async function startHttpServer(
     })
   );
 
+  const publicUrl = process.env.PUBLIC_URL?.replace(/\/+$/, '');
+
   app.get('/healthz', (_req, res) => {
-    res.json({ ok: true, sessions: transports.size });
+    res.json({
+      ok: true,
+      sessions: transports.size,
+      publicUrl: publicUrl ?? null,
+    });
   });
 
   app.post('/mcp', async (req, res) => {
@@ -145,6 +151,9 @@ export async function startHttpServer(
       console.error(
         `Netskope MCP HTTP server listening on http://${host}:${port}/mcp`
       );
+      if (publicUrl) {
+        console.error(`Advertising public endpoint: ${publicUrl}/mcp`);
+      }
       resolve();
     });
   });
