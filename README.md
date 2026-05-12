@@ -82,7 +82,7 @@ The MCP server provides **84 specialized tools** across 10 categories:
      "mcpServers": {
        "netskope-npa": {
          "command": "node",
-         "args": ["/path/to/ns-private-access-mcp/build/index.js"],
+         "args": ["/path/to/privateaccess-mcp/build/index.js"],
          "env": {
            "NETSKOPE_BASE_URL": "https://your-tenant.goskope.com",
            "NETSKOPE_TOKEN": "your-api-token"
@@ -123,89 +123,11 @@ npm install @johnneerdael/ns-private-access-mcp
 
 ### Local Development
 ```bash
-git clone https://github.com/johnneerdael/ns-private-access-mcp.git
-cd ns-private-access-mcp
+git clone https://github.com/johnneerdael/privateaccess-mcp.git
+cd privateaccess-mcp
 npm install
 npm run build
 ```
-
-## Remote / Hosted Mode (Streamable HTTP)
-
-A public instance of this server is hosted at:
-
-> **`https://privateaccess.ntsk.app/mcp`**
-
-The hosted instance is **multi-tenant and stateless** — it stores no
-credentials. Every request must carry **both**:
-
-| Header | Value |
-|--------|-------|
-| `X-Netskope-Tenant` | `https://<tenant>.goskope.com` (scheme is added if you omit it) |
-| `Authorization` | `Bearer <netskope-api-token>` |
-
-`Accept: application/json, text/event-stream` and `Mcp-Session-Id` are
-handled by your MCP client automatically — you don't need to set them by hand.
-
-You bring your own tenant URL and API token; they live only in your client
-config and travel with each request. Requests missing either header receive
-`401 Unauthorized` with a JSON-RPC error pointing at the missing field.
-
-### Install in Claude Code
-
-Claude Code speaks streamable HTTP natively. Add the server with one command:
-
-```bash
-claude mcp add --transport http netskope https://privateaccess.ntsk.app/mcp \
-  --header "X-Netskope-Tenant: https://YOUR-TENANT.goskope.com" \
-  --header "Authorization: Bearer YOUR_NETSKOPE_API_TOKEN"
-```
-
-Or, equivalently, add it to `~/.claude.json` (user scope) or `.mcp.json`
-(project scope):
-
-```json
-{
-  "mcpServers": {
-    "netskope": {
-      "type": "http",
-      "url": "https://privateaccess.ntsk.app/mcp",
-      "headers": {
-        "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
-        "Authorization": "Bearer ${NETSKOPE_API_TOKEN}"
-      }
-    }
-  }
-}
-```
-
-Verify with `claude mcp list` — the server should show up and report
-its tool count.
-
-### Install in OpenAI Codex CLI
-
-Codex's `mcp_servers` config currently expects a stdio command, so we use the
-[`mcp-remote`](https://www.npmjs.com/package/mcp-remote) bridge (shipped via
-`npx`) to translate stdio ↔ streamable HTTP. Add to `~/.codex/config.toml`:
-
-```toml
-[mcp_servers.netskope]
-command = "npx"
-args = [
-  "-y", "mcp-remote",
-  "https://privateaccess.ntsk.app/mcp",
-  "--header", "X-Netskope-Tenant: https://YOUR-TENANT.goskope.com",
-  "--header", "Authorization: Bearer ${NETSKOPE_API_TOKEN}",
-]
-
-[mcp_servers.netskope.env]
-NETSKOPE_API_TOKEN = "your-netskope-api-token"
-```
-
-Then `codex mcp list` to confirm Codex sees the server, and Codex will surface
-the Netskope tools on its next turn.
-
-> The same `mcp-remote` recipe works for any client that only supports stdio
-> MCP servers (older Cursor, Continue, etc.).
 
 ### Generic JSON client config
 
@@ -215,7 +137,7 @@ For clients that take a JSON map (Cursor, Windsurf, custom hosts):
 {
   "mcpServers": {
     "netskope": {
-      "url": "https://privateaccess.ntsk.app/mcp",
+      "url": "https://{hosted-endpoint}/mcp",
       "headers": {
         "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"
@@ -238,7 +160,7 @@ One-liners without compose:
 
 ```bash
 # Prebuilt image from GHCR
-docker run --rm -p 3000:3000 ghcr.io/johnneerdael/ns-private-access-mcp:latest
+docker run --rm -p 3000:3000 ghcr.io/johnneerdael/privateaccess-mcp:latest
 
 # Build and run from a local checkout
 docker build -t netskope-mcp:local .
