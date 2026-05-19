@@ -36,4 +36,4 @@ For an HTTP-capable client, use:
 }
 ```
 
-Then open the client-specific page under [Install guides](/ns-private-access-mcp/install/) for the exact location and restart behavior.
+Then open the client-specific page under [Install guides](/privateaccess-mcp/install/) for the exact location and restart behavior.

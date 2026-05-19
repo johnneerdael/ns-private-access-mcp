@@ -5,8 +5,8 @@ author:      John Neerdael
 language:    en
 timezone:    Europe/Amsterdam
 
-url:         https://johnneerdael.github.io/ns-private-access-mcp
-root:        /ns-private-access-mcp/
+url:         https://johnneerdael.github.io/privateaccess-mcp
+root:        /privateaccess-mcp/
 permalink:   :title/
 permalink_defaults:
 pretty_urls:

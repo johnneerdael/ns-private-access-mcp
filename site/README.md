@@ -1,7 +1,7 @@
 # Netskope NPA MCP docs site
 
 Hexo + Cactus source for the public docs site at
-https://johnneerdael.github.io/ns-private-access-mcp/.
+https://johnneerdael.github.io/privateaccess-mcp/.
 
 ## Local development
 
@@ -14,7 +14,7 @@ npx hexo server
 The local URL is:
 
 ```text
-http://localhost:4000/ns-private-access-mcp/
+http://localhost:4000/privateaccess-mcp/
 ```
 
 Edit Markdown under `source/`; the dev server hot-reloads.

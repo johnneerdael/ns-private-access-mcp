@@ -9,9 +9,9 @@ Netskope NPA MCP is a Model Context Protocol server for managing Netskope Privat
 
 | Path | Use when | Start here |
 |------|----------|------------|
-| Hosted HTTP | You want the quickest client setup and can send tenant URL plus API token as MCP request headers. | [Install guides](/ns-private-access-mcp/install/) |
-| Local stdio | Your client launches MCP servers as local commands. | [Starter guide](/ns-private-access-mcp/starter/) |
-| Self-hosted HTTP | You want a private endpoint behind your own network controls. | [Operations](/ns-private-access-mcp/operations/) |
+| Hosted HTTP | You want the quickest client setup and can send tenant URL plus API token as MCP request headers. | [Install guides](/privateaccess-mcp/install/) |
+| Local stdio | Your client launches MCP servers as local commands. | [Starter guide](/privateaccess-mcp/starter/) |
+| Self-hosted HTTP | You want a private endpoint behind your own network controls. | [Operations](/privateaccess-mcp/operations/) |
 
 ## Quick install
 
@@ -29,7 +29,7 @@ docker run --rm -p 3000:3000 ghcr.io/johnneerdael/privateaccess-mcp:latest
 
 ## Documentation
 
-- New users: [Starter guide](/ns-private-access-mcp/starter/)
-- Client setup: [Install guides](/ns-private-access-mcp/install/)
-- Hosting and operations: [Operations](/ns-private-access-mcp/operations/)
-- Tool and security details: [Reference](/ns-private-access-mcp/reference/)
+- New users: [Starter guide](/privateaccess-mcp/starter/)
+- Client setup: [Install guides](/privateaccess-mcp/install/)
+- Hosting and operations: [Operations](/privateaccess-mcp/operations/)
+- Tool and security details: [Reference](/privateaccess-mcp/reference/)

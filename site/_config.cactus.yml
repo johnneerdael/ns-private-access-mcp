@@ -25,7 +25,7 @@ nav:
   install:   /install/
   operations: /operations/
   reference: /reference/
-  github:    https://github.com/johnneerdael/ns-private-access-mcp
+  github:    https://github.com/johnneerdael/privateaccess-mcp
 
 social_links:
   github: johnneerdael
