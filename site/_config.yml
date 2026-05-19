@@ -1,12 +1,12 @@
-title:       terraform-netskope-publisher
-subtitle:    Provision Netskope Publishers on AWS, Azure, GCP, vSphere
-description: One Terraform module, four clouds, API-driven registration.
+title:       Netskope NPA MCP
+subtitle:    Manage Netskope Private Access through Model Context Protocol clients
+description: Installation, operations, and reference documentation for the Netskope NPA MCP server.
 author:      John Neerdael
 language:    en
 timezone:    Europe/Amsterdam
 
-url:         https://johnneerdael.github.io/terraform-netskope-publisher
-root:        /terraform-netskope-publisher/
+url:         https://johnneerdael.github.io/ns-private-access-mcp
+root:        /ns-private-access-mcp/
 permalink:   :title/
 permalink_defaults:
 pretty_urls:
@@ -25,5 +25,4 @@ new_post_name:  :title.md
 
 theme: cactus
 
-# Surfaced into page footers via hexo-injector (Task 3).
-module_version: v2.x
+module_version: v6.3.0

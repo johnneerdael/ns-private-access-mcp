@@ -1,5 +1,5 @@
 {
-  "name": "terraform-netskope-publisher-site",
+  "name": "netskope-npa-mcp-site",
   "private": true,
   "hexo": {
     "version": "7.3.0"

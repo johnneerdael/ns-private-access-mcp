@@ -1,0 +1,48 @@
+# Defines linear page ordering within site sections. Keys are relative URLs,
+# always trailing slash and prefixed with the GitHub Pages root.
+
+starter:
+  - url: /ns-private-access-mcp/starter/01-what-youll-connect/
+    title: "1. What you'll connect"
+  - url: /ns-private-access-mcp/starter/02-prerequisites/
+    title: "2. Prerequisites"
+  - url: /ns-private-access-mcp/starter/03-netskope-token/
+    title: "3. Netskope token"
+  - url: /ns-private-access-mcp/starter/04-choose-transport/
+    title: "4. Choose a transport"
+  - url: /ns-private-access-mcp/starter/05-configure-first-client/
+    title: "5. Configure your first client"
+  - url: /ns-private-access-mcp/starter/06-verify-tools/
+    title: "6. Verify tools"
+  - url: /ns-private-access-mcp/starter/07-first-safe-prompts/
+    title: "7. First safe prompts"
+  - url: /ns-private-access-mcp/starter/08-troubleshooting/
+    title: "8. Troubleshooting"
+  - url: /ns-private-access-mcp/starter/09-next-steps/
+    title: "9. Next steps"
+
+install:
+  - url: /ns-private-access-mcp/install/claude-desktop/
+    title: "Claude Desktop"
+  - url: /ns-private-access-mcp/install/claude-code/
+    title: "Claude Code"
+  - url: /ns-private-access-mcp/install/cursor/
+    title: "Cursor"
+  - url: /ns-private-access-mcp/install/vscode-copilot/
+    title: "VS Code / GitHub Copilot"
+  - url: /ns-private-access-mcp/install/windsurf/
+    title: "Windsurf"
+  - url: /ns-private-access-mcp/install/codex/
+    title: "Codex"
+  - url: /ns-private-access-mcp/install/gemini-cli/
+    title: "Gemini CLI"
+  - url: /ns-private-access-mcp/install/cline-roo/
+    title: "Cline / Roo Code"
+  - url: /ns-private-access-mcp/install/continue/
+    title: "Continue"
+  - url: /ns-private-access-mcp/install/zed/
+    title: "Zed"
+  - url: /ns-private-access-mcp/install/jetbrains/
+    title: "JetBrains AI Assistant / Junie"
+  - url: /ns-private-access-mcp/install/generic-mcp-json/
+    title: "Generic MCP JSON"

@@ -20,11 +20,12 @@ favicon:
     gravatar: false
 
 nav:
-  home:      /
+  home:       /
   starter:   /starter/
-  admin:     /admin/
+  install:   /install/
+  operations: /operations/
   reference: /reference/
-  github:    https://github.com/johnneerdael/terraform-netskope-publisher
+  github:    https://github.com/johnneerdael/ns-private-access-mcp
 
 social_links:
   github: johnneerdael
