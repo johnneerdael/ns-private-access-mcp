@@ -18,3 +18,5 @@ Summarize publisher upgrade profiles and identify publishers without a profile.
 ```
 
 For write operations, ask the agent to propose a plan first, then confirm the exact resources it will modify.
+
+Ready? -> [Review troubleshooting](/privateaccess-mcp/starter/08-troubleshooting/)

@@ -16,3 +16,5 @@ A linear walkthrough for connecting one MCP client to Netskope NPA MCP and confi
 7. [First safe prompts](/privateaccess-mcp/starter/07-first-safe-prompts/)
 8. [Troubleshooting](/privateaccess-mcp/starter/08-troubleshooting/)
 9. [Next steps](/privateaccess-mcp/starter/09-next-steps/)
+
+Ready? -> [Start with what you'll connect](/privateaccess-mcp/starter/01-what-youll-connect/)

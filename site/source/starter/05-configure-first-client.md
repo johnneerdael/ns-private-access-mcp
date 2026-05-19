@@ -37,3 +37,5 @@ For an HTTP-capable client, use:
 ```
 
 Then open the client-specific page under [Install guides](/privateaccess-mcp/install/) for the exact location and restart behavior.
+
+Ready? -> [Verify tools](/privateaccess-mcp/starter/06-verify-tools/)

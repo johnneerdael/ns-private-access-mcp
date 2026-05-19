@@ -18,3 +18,5 @@ For local HTTP health:
 ```bash
 curl http://localhost:3000/healthz
 ```
+
+Ready? -> [Choose next steps](/privateaccess-mcp/starter/09-next-steps/)

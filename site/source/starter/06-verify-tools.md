@@ -16,3 +16,5 @@ Use the Netskope NPA MCP server to list publishers and summarize their status. D
 ```
 
 If no tools appear, check the client's MCP status panel, local command path, token environment variables, and server logs.
+
+Ready? -> [Try first safe prompts](/privateaccess-mcp/starter/07-first-safe-prompts/)

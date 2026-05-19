@@ -21,3 +21,5 @@ For local HTTP, run from a checkout of this repository:
 ```bash
 docker compose up -d
 ```
+
+Ready? -> [Create your Netskope token](/privateaccess-mcp/starter/03-netskope-token/)
