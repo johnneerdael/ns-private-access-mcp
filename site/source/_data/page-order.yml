@@ -46,3 +46,35 @@ install:
     title: "JetBrains AI Assistant / Junie"
   - url: /privateaccess-mcp/install/generic-mcp-json/
     title: "Generic MCP JSON"
+
+operations:
+  - url: /privateaccess-mcp/operations/hosted-endpoint/
+    title: "Hosted endpoint"
+  - url: /privateaccess-mcp/operations/docker/
+    title: "Docker"
+  - url: /privateaccess-mcp/operations/local-node/
+    title: "Local Node"
+  - url: /privateaccess-mcp/operations/http-server/
+    title: "HTTP server"
+  - url: /privateaccess-mcp/operations/environment/
+    title: "Environment variables"
+  - url: /privateaccess-mcp/operations/secret-handling/
+    title: "Secret handling"
+  - url: /privateaccess-mcp/operations/troubleshooting/
+    title: "Operations troubleshooting"
+
+reference:
+  - url: /privateaccess-mcp/reference/tool-categories/
+    title: "Tool categories"
+  - url: /privateaccess-mcp/reference/transport-matrix/
+    title: "Transport matrix"
+  - url: /privateaccess-mcp/reference/config-snippets/
+    title: "Configuration snippets"
+  - url: /privateaccess-mcp/reference/security-model/
+    title: "Security model"
+  - url: /privateaccess-mcp/reference/api-token-permissions/
+    title: "API token permissions"
+  - url: /privateaccess-mcp/reference/status/
+    title: "Status"
+  - url: /privateaccess-mcp/reference/roadmap/
+    title: "Roadmap"

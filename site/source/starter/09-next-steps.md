@@ -10,4 +10,4 @@ Next steps:
 - Review [Tool categories](/privateaccess-mcp/reference/tool-categories/) to understand available operations.
 - Use read-only prompts before granting agents write-oriented work.
 
-Need the guided path again? -> [Back to the starter guide](/privateaccess-mcp/starter/)
+Back: [Back to the starter guide](/privateaccess-mcp/starter/)

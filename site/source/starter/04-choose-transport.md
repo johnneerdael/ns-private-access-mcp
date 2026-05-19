@@ -11,4 +11,4 @@ date: 2026-05-20
 
 Prefer stdio when the client expects local subprocess MCP servers. Prefer HTTP when the client supports remote MCP endpoints and you want one shared deployment.
 
-Ready? -> [Configure your first client](/privateaccess-mcp/starter/05-configure-first-client/)
+Next: [Configure your first client](/privateaccess-mcp/starter/05-configure-first-client/)

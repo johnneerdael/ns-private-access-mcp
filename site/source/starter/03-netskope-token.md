@@ -21,4 +21,4 @@ Authorization: Bearer YOUR_NETSKOPE_API_TOKEN
 
 Keep production tokens out of shared repository config. Use user-level MCP config or secret storage for personal credentials.
 
-Ready? -> [Choose a transport](/privateaccess-mcp/starter/04-choose-transport/)
+Next: [Choose a transport](/privateaccess-mcp/starter/04-choose-transport/)

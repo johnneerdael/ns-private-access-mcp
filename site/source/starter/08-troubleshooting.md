@@ -19,4 +19,4 @@ For local HTTP health:
 curl http://localhost:3000/healthz
 ```
 
-Ready? -> [Choose next steps](/privateaccess-mcp/starter/09-next-steps/)
+Next: [Choose next steps](/privateaccess-mcp/starter/09-next-steps/)
