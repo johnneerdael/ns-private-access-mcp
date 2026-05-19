@@ -1,0 +1,29 @@
+title:       terraform-netskope-publisher
+subtitle:    Provision Netskope Publishers on AWS, Azure, GCP, vSphere
+description: One Terraform module, four clouds, API-driven registration.
+author:      John Neerdael
+language:    en
+timezone:    Europe/Amsterdam
+
+url:         https://johnneerdael.github.io/terraform-netskope-publisher
+root:        /terraform-netskope-publisher/
+permalink:   :title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: false
+  trailing_html:  false
+
+source_dir:    source
+public_dir:    public
+tag_dir:       tags
+archive_dir:   archives
+category_dir:  categories
+code_dir:      downloads/code
+
+default_layout: page
+new_post_name:  :title.md
+
+theme: cactus
+
+# Surfaced into page footers via hexo-injector (Task 3).
+module_version: v2.x

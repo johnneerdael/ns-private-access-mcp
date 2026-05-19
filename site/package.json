@@ -1,0 +1,21 @@
+{
+  "name": "terraform-netskope-publisher-site",
+  "private": true,
+  "hexo": {
+    "version": "7.3.0"
+  },
+  "scripts": {
+    "build": "hexo generate",
+    "serve": "hexo server",
+    "clean": "hexo clean"
+  },
+  "dependencies": {
+    "hexo": "^7.3.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^6.3.0",
+    "hexo-renderer-stylus": "^3.0.1",
+    "hexo-tag-tabs": "^1.0.0",
+    "hexo-theme-cactus": "probberechts/hexo-theme-cactus",
+    "hexo-toc": "^1.0.0"
+  }
+}

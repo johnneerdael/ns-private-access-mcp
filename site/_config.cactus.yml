@@ -1,0 +1,40 @@
+colorscheme: dark
+
+logo:
+  enabled: true
+  width: 120
+  height: 61
+  url: /images/netskope-logo.png
+  gravatar: false
+  grayout: false
+
+favicon:
+  desktop:
+    url: /images/netskope-favicon.ico
+    gravatar: false
+  android:
+    url: /images/netskope-favicon-192x192.png
+    gravatar: false
+  apple:
+    url: /images/netskope-apple-touch-icon.png
+    gravatar: false
+
+nav:
+  home:      /
+  starter:   /starter/
+  admin:     /admin/
+  reference: /reference/
+  github:    https://github.com/johnneerdael/terraform-netskope-publisher
+
+social_links:
+  github: johnneerdael
+
+projects:
+  enabled: false
+
+posts_overview:
+  show_all_posts: false
+
+copyright:
+  start_year: 2026
+  end_year:   2026
