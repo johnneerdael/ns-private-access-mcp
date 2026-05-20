@@ -23,6 +23,9 @@ nav:
   home:       /
   starter:   /starter/
   install:   /install/
+  tools:      /tools/
+  workflows: /workflows/
+  examples:  /examples/
   operations: /operations/
   reference: /reference/
   github:    https://github.com/johnneerdael/privateaccess-mcp

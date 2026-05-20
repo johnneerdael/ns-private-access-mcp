@@ -13,5 +13,5 @@ Current documentation site status:
 
 - Hexo/Cactus GitHub Pages site.
 - Covers hosted HTTP, local stdio, and self-hosted HTTP usage.
-- Documents 84 MCP tools across 10 categories.
+- Documents 69 published MCP tools across 10 categories.
 - Client install guides are maintained from current platform documentation.

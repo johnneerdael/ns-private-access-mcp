@@ -78,3 +78,49 @@ reference:
     title: "Status"
   - url: /privateaccess-mcp/reference/roadmap/
     title: "Roadmap"
+
+tools:
+  - url: /privateaccess-mcp/tools/publishers/
+    title: "Publisher tools"
+  - url: /privateaccess-mcp/tools/private-apps/
+    title: "Private app tools"
+  - url: /privateaccess-mcp/tools/local-brokers/
+    title: "Local broker tools"
+  - url: /privateaccess-mcp/tools/policies/
+    title: "Policy tools"
+  - url: /privateaccess-mcp/tools/scim/
+    title: "SCIM tools"
+  - url: /privateaccess-mcp/tools/upgrade-profiles/
+    title: "Upgrade profile tools"
+  - url: /privateaccess-mcp/tools/steering/
+    title: "Steering tools"
+  - url: /privateaccess-mcp/tools/alerts/
+    title: "Alert tools"
+  - url: /privateaccess-mcp/tools/search/
+    title: "Search tools"
+  - url: /privateaccess-mcp/tools/validation/
+    title: "Validation tools"
+
+workflows:
+  - url: /privateaccess-mcp/workflows/new-office/
+    title: "New office setup"
+  - url: /privateaccess-mcp/workflows/application-onboarding/
+    title: "Application onboarding"
+  - url: /privateaccess-mcp/workflows/access-policy/
+    title: "Access policy changes"
+  - url: /privateaccess-mcp/workflows/maintenance/
+    title: "Maintenance and upgrades"
+  - url: /privateaccess-mcp/workflows/compliance/
+    title: "Compliance audit"
+  - url: /privateaccess-mcp/workflows/incident-response/
+    title: "Incident response"
+
+examples:
+  - url: /privateaccess-mcp/examples/prompt-cookbook/
+    title: "Prompt cookbook"
+  - url: /privateaccess-mcp/examples/read-only-assessment/
+    title: "Read-only assessment"
+  - url: /privateaccess-mcp/examples/change-planning/
+    title: "Change planning"
+  - url: /privateaccess-mcp/examples/write-operations/
+    title: "Write operations"

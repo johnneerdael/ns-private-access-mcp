@@ -3,7 +3,7 @@ title: Netskope NPA MCP
 date: 2026-05-20
 ---
 
-Netskope NPA MCP is a Model Context Protocol server for managing Netskope Private Access infrastructure from MCP-capable AI clients. It exposes tools for publishers, private apps, local brokers, policies, SCIM identity data, upgrade profiles, steering, alerts, search, and validation.
+Netskope NPA MCP is a Model Context Protocol server for managing Netskope Private Access infrastructure from MCP-capable AI clients. It exposes 69 tools for publishers, private apps, local brokers, policies, SCIM identity data, upgrade profiles, steering, alerts, search, and validation.
 
 ## Choose your path
 
@@ -31,5 +31,8 @@ docker run --rm -p 3000:3000 ghcr.io/johnneerdael/privateaccess-mcp:latest
 
 - New users: [Starter guide](/privateaccess-mcp/starter/)
 - Client setup: [Install guides](/privateaccess-mcp/install/)
+- Published tool surface: [Tools](/privateaccess-mcp/tools/)
+- Real operating patterns: [Workflows](/privateaccess-mcp/workflows/)
+- Prompt examples: [Examples](/privateaccess-mcp/examples/)
 - Hosting and operations: [Operations](/privateaccess-mcp/operations/)
 - Tool and security details: [Reference](/privateaccess-mcp/reference/)
