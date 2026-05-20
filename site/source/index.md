@@ -3,7 +3,7 @@ title: Netskope NPA MCP
 date: 2026-05-20
 ---
 
-Netskope NPA MCP is a Model Context Protocol server for managing Netskope Private Access infrastructure from MCP-capable AI clients. It exposes 69 tools for publishers, private apps, local brokers, policies, SCIM identity data, upgrade profiles, steering, alerts, search, and validation.
+Netskope NPA MCP is a Model Context Protocol server for managing Netskope Private Access infrastructure from MCP-capable AI clients. It exposes 70 tools for publishers, private apps, local brokers, policies, SCIM identity data, upgrade profiles, steering, alerts, search, and validation.
 
 ## Choose your path
 

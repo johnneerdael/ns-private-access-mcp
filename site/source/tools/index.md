@@ -3,13 +3,13 @@ title: Tools
 date: 2026-05-20
 ---
 
-Netskope NPA MCP currently publishes 69 server-registered tools. This section documents the actual tool names exposed by `src/server.ts`, grouped by operational area.
+Netskope NPA MCP currently publishes 70 server-registered tools. This section documents the actual tool names exposed by `src/server.ts`, grouped by operational area.
 
 | Category | Tools | Start here |
 |----------|-------|------------|
 | Publishers | 10 | [Publisher tools](/privateaccess-mcp/tools/publishers/) |
 | Private apps | 20 | [Private app tools](/privateaccess-mcp/tools/private-apps/) |
-| Local brokers | 8 | [Local broker tools](/privateaccess-mcp/tools/local-brokers/) |
+| Local brokers | 9 | [Local broker tools](/privateaccess-mcp/tools/local-brokers/) |
 | Policies | 10 | [Policy tools](/privateaccess-mcp/tools/policies/) |
 | SCIM | 5 | [SCIM tools](/privateaccess-mcp/tools/scim/) |
 | Upgrade profiles | 7 | [Upgrade profile tools](/privateaccess-mcp/tools/upgrade-profiles/) |
