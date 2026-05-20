@@ -29,7 +29,7 @@ Workspace config is usually:
   "servers": {
     "netskope-npa": {
       "type": "http",
-      "url": "https://privateaccess.ntsk.app/mcp",
+      "url": "https://YOUR-MCP-HOST.example.com/mcp",
       "headers": {
         "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"

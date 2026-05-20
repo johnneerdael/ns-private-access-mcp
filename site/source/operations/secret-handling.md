@@ -7,7 +7,7 @@ Treat Netskope API tokens as production credentials.
 
 - Prefer user-level MCP config over repository config.
 - Do not commit tenant URLs and tokens together in shared files.
-- Use per-client HTTP headers for shared hosted endpoints.
+- Use per-client HTTP headers for shared self-hosted HTTP endpoints.
 - Use fallback environment variables only for single-tenant deployments.
 - Rotate tokens after demos, tests, or incident response workflows.
 

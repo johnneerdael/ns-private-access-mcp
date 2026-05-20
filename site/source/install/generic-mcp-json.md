@@ -13,7 +13,7 @@ Use this guide for clients that accept a standard `mcpServers` JSON object but d
 {
   "mcpServers": {
     "netskope-npa": {
-      "url": "https://privateaccess.ntsk.app/mcp",
+      "url": "https://YOUR-MCP-HOST.example.com/mcp",
       "headers": {
         "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"

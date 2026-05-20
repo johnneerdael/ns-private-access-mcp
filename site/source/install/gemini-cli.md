@@ -13,7 +13,7 @@ Use `httpUrl` for Streamable HTTP. Gemini CLI uses `mcpServers` in `settings.jso
 {
   "mcpServers": {
     "netskope-npa": {
-      "httpUrl": "https://privateaccess.ntsk.app/mcp",
+      "httpUrl": "https://YOUR-MCP-HOST.example.com/mcp",
       "headers": {
         "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"

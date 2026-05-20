@@ -24,5 +24,5 @@ Use these placeholder values consistently:
 
 - `https://YOUR-TENANT.goskope.com`
 - `YOUR_NETSKOPE_API_TOKEN`
-- `https://privateaccess.ntsk.app/mcp`
+- `https://YOUR-MCP-HOST.example.com/mcp`
 - `http://localhost:3000/mcp`

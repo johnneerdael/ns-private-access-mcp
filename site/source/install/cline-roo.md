@@ -7,13 +7,13 @@ date: 2026-05-20
 
 Use Streamable HTTP for hosted NPA MCP. Use stdio for local-only setups. Cline and Roo Code both use JSON with `mcpServers`, but Roo Code requires an explicit `type` for URL-based Streamable HTTP configs.
 
-## Cline hosted HTTP
+## Cline self-hosted HTTP
 
 ```json
 {
   "mcpServers": {
     "netskope-npa": {
-      "url": "https://privateaccess.ntsk.app/mcp",
+      "url": "https://YOUR-MCP-HOST.example.com/mcp",
       "headers": {
         "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"
@@ -25,14 +25,14 @@ Use Streamable HTTP for hosted NPA MCP. Use stdio for local-only setups. Cline a
 }
 ```
 
-## Roo Code hosted HTTP
+## Roo Code self-hosted HTTP
 
 ```json
 {
   "mcpServers": {
     "netskope-npa": {
       "type": "streamable-http",
-      "url": "https://privateaccess.ntsk.app/mcp",
+      "url": "https://YOUR-MCP-HOST.example.com/mcp",
       "headers": {
         "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"

@@ -5,7 +5,7 @@ date: 2026-05-20
 
 ## Recommendation
 
-Use a custom server from the Agent Panel settings. Streamable HTTP is the best fit for the hosted endpoint.
+Use a custom server from the Agent Panel settings. Streamable HTTP is the best fit for the self-hosted HTTP endpoint.
 
 ## Add custom server
 
@@ -17,7 +17,7 @@ Open the Agent Panel settings view, then choose Add Custom Server. Use the serve
 {
   "mcpServers": {
     "netskope-npa": {
-      "url": "https://privateaccess.ntsk.app/mcp",
+      "url": "https://YOUR-MCP-HOST.example.com/mcp",
       "headers": {
         "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"

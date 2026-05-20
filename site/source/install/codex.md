@@ -25,7 +25,7 @@ Use this only if your Codex version supports HTTP MCP servers in config:
 
 ```toml
 [mcp_servers.netskope-npa]
-url = "https://privateaccess.ntsk.app/mcp"
+url = "https://YOUR-MCP-HOST.example.com/mcp"
 
 [mcp_servers.netskope-npa.http_headers]
 X-Netskope-Tenant = "https://YOUR-TENANT.goskope.com"

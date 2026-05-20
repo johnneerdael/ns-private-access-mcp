@@ -49,7 +49,7 @@ install:
 
 operations:
   - url: /privateaccess-mcp/operations/hosted-endpoint/
-    title: "Hosted endpoint"
+    title: "Self-hosted HTTP endpoint"
   - url: /privateaccess-mcp/operations/docker/
     title: "Docker"
   - url: /privateaccess-mcp/operations/local-node/

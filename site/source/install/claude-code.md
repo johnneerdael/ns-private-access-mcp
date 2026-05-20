@@ -5,12 +5,12 @@ date: 2026-05-20
 
 ## Recommendation
 
-Use HTTP when you want the hosted endpoint. Use stdio when you want Claude Code to launch the npm package locally.
+Use HTTP when you want the self-hosted HTTP endpoint. Use stdio when you want Claude Code to launch the npm package locally.
 
-## Add hosted HTTP
+## Add self-hosted HTTP
 
 ```bash
-claude mcp add-json netskope-npa '{"type":"http","url":"https://privateaccess.ntsk.app/mcp","headers":{"X-Netskope-Tenant":"https://YOUR-TENANT.goskope.com","Authorization":"Bearer YOUR_NETSKOPE_API_TOKEN"}}' --scope user
+claude mcp add-json netskope-npa '{"type":"http","url":"https://YOUR-MCP-HOST.example.com/mcp","headers":{"X-Netskope-Tenant":"https://YOUR-TENANT.goskope.com","Authorization":"Bearer YOUR_NETSKOPE_API_TOKEN"}}' --scope user
 ```
 
 Use `--scope local` for the current project only or `--scope project` to create a shared `.mcp.json`.

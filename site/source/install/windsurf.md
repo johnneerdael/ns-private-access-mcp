@@ -21,7 +21,7 @@ You can also add servers from Windsurf Settings > Cascade > MCP Servers or the M
 {
   "mcpServers": {
     "netskope-npa": {
-      "url": "https://privateaccess.ntsk.app/mcp",
+      "url": "https://YOUR-MCP-HOST.example.com/mcp",
       "headers": {
         "X-Netskope-Tenant": "https://YOUR-TENANT.goskope.com",
         "Authorization": "Bearer YOUR_NETSKOPE_API_TOKEN"

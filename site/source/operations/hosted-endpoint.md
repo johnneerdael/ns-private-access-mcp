@@ -1,12 +1,12 @@
 ---
-title: Hosted Endpoint
+title: Self-hosted HTTP Endpoint
 date: 2026-05-20
 ---
 
-The hosted endpoint is useful when a client supports remote MCP over HTTP and you do not want the client to launch a local process.
+The self-hosted HTTP endpoint is useful when a client supports remote MCP over HTTP and you do not want the client to launch a local process.
 
 ```text
-https://privateaccess.ntsk.app/mcp
+https://YOUR-MCP-HOST.example.com/mcp
 ```
 
 Pass tenant credentials as request headers:

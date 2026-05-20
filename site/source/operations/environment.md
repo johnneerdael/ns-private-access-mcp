@@ -11,7 +11,7 @@ date: 2026-05-20
 | `NETSKOPE_BASE_URL` | Optional fallback tenant URL for single-tenant deployments. |
 | `NETSKOPE_API_TOKEN` | Optional fallback token for single-tenant deployments. |
 
-For multi-tenant hosted deployments, leave fallback Netskope credentials unset and require clients to send headers.
+For multi-tenant self-hosted deployments, leave fallback Netskope credentials unset and require clients to send headers.
 
 For single-tenant local deployments:
 
