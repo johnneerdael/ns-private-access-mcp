@@ -1,5 +1,5 @@
 import * as commands from './commands/index.js';
-import { LocalBrokerConfigPutRequest } from './types/schemas/local-broker.schemas.js';
+import { LocalBrokerConfigPutRequest, LocalBrokerPostRequest, LocalBrokerPutRequest } from './types/schemas/local-broker.schemas.js';
 import { UpgradeProfilePostRequest } from './types/schemas/upgrade-profiles.schemas.js';
 import { PublisherPostRequest, PublisherPutRequest, PublisherPatchRequest } from './types/schemas/publisher.schemas.js';
 import { AlertEventType } from './types/schemas/alerts.schemas.js';
@@ -43,11 +43,11 @@ export class NetskopeClient {
   }
 
   // Local Broker
-  async createLocalBroker(params: { name: string }) {
+  async createLocalBroker(params: LocalBrokerPostRequest) {
     return await commands.createLocalBroker(params);
   }
 
-  async updateLocalBroker(id: number, params: { name: string }) {
+  async updateLocalBroker(id: number, params: LocalBrokerPutRequest) {
     return await commands.updateLocalBroker(id, params);
   }
 
@@ -65,6 +65,10 @@ export class NetskopeClient {
 
   async getLocalBrokerConfig() {
     return await commands.getLocalBrokerConfig();
+  }
+
+  async createLocalBrokerConfig(config: LocalBrokerConfigPutRequest) {
+    return await commands.createLocalBrokerConfig(config);
   }
 
   async updateLocalBrokerConfig(config: LocalBrokerConfigPutRequest) {

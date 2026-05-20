@@ -26,7 +26,7 @@ async function examples() {
     const broker = JSON.parse(brokerResult.content[0].text).data;
     
     const brokerDetails = await mcp.getLocalBroker(broker.id);
-    await mcp.updateLocalBroker(broker.id, { name: "edge-broker-updated" });
+    await mcp.updateLocalBroker(broker.id, { city_name: "London", country_code: "GB" });
     const allBrokers = await mcp.listLocalBrokers();
     const brokerConfig = await mcp.getLocalBrokerConfig();
     await mcp.updateLocalBrokerConfig({

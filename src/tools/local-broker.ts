@@ -3,6 +3,7 @@ import {
   LocalBrokerResponse,
   LocalBrokersGetResponse,
   LocalBrokerConfigResponse,
+  LocalBrokerDeleteResponse,
   LocalBrokerPostRequest,
   LocalBrokerPutRequest,
   LocalBrokerConfigPutRequest,
@@ -84,7 +85,7 @@ export const LocalBrokerTools = {
       id: z.number()
     }),
     handler: async (params: { id: number }) => {
-      const result = await api.requestWithRetry<ApiResponse<void>>(
+      const result = await api.requestWithRetry<ApiResponse<LocalBrokerDeleteResponse>>(
         `/api/v2/infrastructure/lbrokers/${params.id}`,
         {
           method: 'DELETE'
@@ -100,6 +101,21 @@ export const LocalBrokerTools = {
     handler: async () => {
       const result = await api.requestWithRetry<ApiResponse<LocalBrokerConfigResponse>>(
         '/api/v2/infrastructure/lbrokers/brokerconfig'
+      );
+      return { content: [{ type: 'text' as const, text: JSON.stringify(result) }] };
+    }
+  },
+
+  createConfig: {
+    name: 'createBrokerConfig',
+    schema: localBrokerConfigPutRequestSchema,
+    handler: async (params: LocalBrokerConfigPutRequest) => {
+      const result = await api.requestWithRetry<ApiResponse<LocalBrokerConfigResponse>>(
+        '/api/v2/infrastructure/lbrokers/brokerconfig',
+        {
+          method: 'POST',
+          body: JSON.stringify(params)
+        }
       );
       return { content: [{ type: 'text' as const, text: JSON.stringify(result) }] };
     }

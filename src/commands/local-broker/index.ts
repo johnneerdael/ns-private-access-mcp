@@ -79,6 +79,18 @@ export async function getLocalBrokerConfig() {
   }
 }
 
+export async function createLocalBrokerConfig(params: z.infer<typeof localBrokerConfigPutRequestSchema>) {
+  try {
+    const result = await LocalBrokerTools.createConfig.handler(params);
+    return result;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to create local broker config: ${error.message}`);
+    }
+    throw error;
+  }
+}
+
 export async function updateLocalBrokerConfig(params: z.infer<typeof localBrokerConfigPutRequestSchema>) {
   try {
     const result = await LocalBrokerTools.updateConfig.handler(params);
@@ -134,6 +146,11 @@ export const localBrokerCommands = {
     name: 'getLocalBrokerConfig',
     schema: LocalBrokerTools.getConfig.schema,
     handler: getLocalBrokerConfig
+  },
+  createLocalBrokerConfig: {
+    name: 'createLocalBrokerConfig',
+    schema: localBrokerConfigPutRequestSchema,
+    handler: createLocalBrokerConfig
   },
   updateLocalBrokerConfig: {
     name: 'updateLocalBrokerConfig',
